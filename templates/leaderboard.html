@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Title</title>
+
+    <!-- Include Bootstrap CSS from a CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- Optional Bootstrap theme -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap-theme.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- Your custom styles go here -->
+    <style>
+        /* Add your custom styles here */
+    </style>
+</head>
+
+<body>
+    <!-- Your content goes here -->
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            {% for workout in workouts %}
+            <th>{{ workout.name }}</th>
+            {% endfor %}
+        </tr>
+        {% for athlete in athletes %}
+        <tr>
+            <td>{{ athlete.name }}</td>
+            <td>{{ athlete.age }}</td>
+            {% for workout in workouts %}
+            <td>{{ athlete.get_score(workout.id) }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Include jQuery from a CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include Bootstrap JavaScript from a CDN -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+    <!-- Your custom scripts go here -->
+    <script>
+        // Add your custom scripts here
+    </script>
+</body>
+
+</html>
