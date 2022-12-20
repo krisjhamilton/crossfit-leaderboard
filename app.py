@@ -14,7 +14,7 @@ def form_submission():
     form_workout = request.form['input_workout']
     form_score = request.form['input_score']
     # process form_input and return a response
-    return 'Form input received: {}'.format(form_name,form_workout,form_score)
+    return 'Form input received: {} - {} - {}'.format(form_name,form_workout,form_score)
 
 @app.route('/form')
 def form():
