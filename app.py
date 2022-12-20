@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 @app.route('/enternew')
 def new_student():
-   return render_template('student.html')
+   return render_template('athlete.html')
 
 @app.route('/addrec',methods = ['POST', 'GET'])
 def addrec():
@@ -25,8 +25,8 @@ def addrec():
          
          with sql.connect("database.db") as con:
             cur = con.cursor()
-            cur.execute("INSERT INTO students (name,age,division) 
-               VALUES (?,?,?,?)",(nm,addr,city,pin) )
+            cur.execute("INSERT INTO athletes (name,age,division) 
+               VALUES (?,?,?)",(nm,age,division) )
             
             con.commit()
             msg = "Record successfully added"
@@ -45,7 +45,7 @@ def list():
    con.row_factory = sql.Row
    
    cur = con.cursor()
-   cur.execute("select * from students")
+   cur.execute("select * from athletes")
    
    rows = cur.fetchall(); 
    return render_template("list.html",rows = rows)
@@ -58,17 +58,17 @@ def list():
 def hello():
     return ("Hello")
 
-@app.route('/form_submission', methods=['POST'])
-def form_submission():
-    form_name = request.form['input_name']
-    form_workout = request.form['input_workout']
-    form_score = request.form['input_score']
-    # process form_input and return a response
-    return 'Form input received: {} - {} - {}'.format(form_name,form_workout,form_score)
+# @app.route('/form_submission', methods=['POST'])
+# def form_submission():
+#     form_name = request.form['input_name']
+#     form_workout = request.form['input_workout']
+#     form_score = request.form['input_score']
+#     # process form_input and return a response
+#     return 'Form input received: {} - {} - {}'.format(form_name,form_workout,form_score)
 
-@app.route('/form')
-def form():
-    return render_template('form.html')
+# @app.route('/form')
+# def form():
+#     return render_template('form.html')
 
 
 if __name__ == '__main__':
