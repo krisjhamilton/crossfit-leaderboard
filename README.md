@@ -1,2 +1,0 @@
-# crossfit-leaderboard
- 
