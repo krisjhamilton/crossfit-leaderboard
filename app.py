@@ -3,10 +3,10 @@ from flask import Flask, request, render_template
 import sqlite3
 
 conn = sqlite3.connect('database.db')
-print "Opened database successfully";
+# print "Opened database successfully";
 
 conn.execute('CREATE TABLE athletes (name TEXT, age TEXT, division TEXT)')
-print "Table created successfully";
+# print "Table created successfully";
 conn.close()
 
 app = Flask(__name__)
@@ -25,8 +25,7 @@ def addrec():
          
          with sql.connect("database.db") as con:
             cur = con.cursor()
-            cur.execute("INSERT INTO athletes (name,age,division) 
-               VALUES (?,?,?)",(nm,age,division) )
+            cur.execute("INSERT INTO athletes (name,age,division) VALUES (?,?,?)",(nm,age,division) )
             
             con.commit()
             msg = "Record successfully added"
