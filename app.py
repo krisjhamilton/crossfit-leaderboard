@@ -13,41 +13,41 @@ app = Flask(__name__)
 
 @app.route('/enternew')
 def new_student():
-   return render_template('athlete.html')
+    return render_template('athlete.html')
 
 @app.route('/addrec',methods = ['POST', 'GET'])
 def addrec():
-   if request.method == 'POST':
-      try:
-         nm = request.form['name']
-         age = request.form['age']
-         division = request.form['division']
-         
-         with sql.connect("database.db") as con:
-            cur = con.cursor()
-            cur.execute("INSERT INTO athletes (name,age,division) VALUES (?,?,?)",(nm,age,division) )
+    if request.method == 'POST':
+        try:
+            nm = request.form['name']
+            age = request.form['age']
+            division = request.form['division']
             
-            con.commit()
-            msg = "Record successfully added"
-      except:
-         con.rollback()
-         msg = "error in insert operation"
-      
-      finally:
-         return render_template("result.html",msg = msg)
-         con.close()
+            with sqlite3.connect("database.db") as con:
+                cur = con.cursor()
+                cur.execute("INSERT INTO athletes (name,age,division) VALUES (?,?,?)",(nm,age,division) )
+                
+                con.commit()
+                msg = "Record successfully added"
+        except:
+            con.rollback()
+            msg = "error in insert operation"
+        
+        finally:
+            return render_template("result.html",msg = msg)
+            con.close()
 
 
 @app.route('/list')
 def list():
-   con = sql.connect("database.db")
-   con.row_factory = sql.Row
-   
-   cur = con.cursor()
-   cur.execute("select * from athletes")
-   
-   rows = cur.fetchall(); 
-   return render_template("list.html",rows = rows)
+    con = sqlite3.connect("database.db")
+    con.row_factory = sql.Row
+    
+    cur = con.cursor()
+    cur.execute("select * from athletes")
+    
+    rows = cur.fetchall(); 
+    return render_template("list.html",rows = rows)
 
 
 
