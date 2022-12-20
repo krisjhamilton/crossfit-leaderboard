@@ -10,9 +10,11 @@ def hello():
 
 @app.route('/form_submission', methods=['POST'])
 def form_submission():
-    form_input = request.form['input_name']
+    form_name = request.form['input_name']
+    form_workout = request.form['input_workout']
+    form_score = request.form['input_score']
     # process form_input and return a response
-    return 'Form input received: {}'.format(form_input)
+    return 'Form input received: {}'.format(form_name,form_workout,form_score)
 
 @app.route('/form')
 def form():
